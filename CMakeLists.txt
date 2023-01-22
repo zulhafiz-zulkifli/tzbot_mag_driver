@@ -17,7 +17,6 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
@@ -40,7 +39,7 @@ ament_python_install_package(scripts)
 
 # Install Python executables
 install(PROGRAMS
-  scripts/driver.py
+  scripts/tzbot_mag_driver.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
