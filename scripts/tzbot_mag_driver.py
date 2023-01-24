@@ -30,18 +30,18 @@ class TzbotMagDriver(Node):
 		self.middle_deviation_pub = self.create_publisher(Float32, 'deviation_middle', 10)
 		self.left_deviation_pub = self.create_publisher(Float32, 'deviation_left', 10)
 		self.cell_state_pub = self.create_publisher(String, 'cell_state', 10)
-		self.create_timer(1/self._publish_rate, self.loop, callback_group=ReentrantCallbackGroup())
+		self.create_timer(1/self._frequency, self.loop, callback_group=ReentrantCallbackGroup())
 
 
 	def setupParam(self):
 		self.declare_parameter('communication_interface', 'rs485')
-		self.declare_parameter('publish_rate', 10)
+		self.declare_parameter('frequency', 10)
 		self.declare_parameter('serial_port', '/dev/ttyS0')
 		self.declare_parameter('baudrate', 9600)
 		self._comm_interface = self.get_parameter('communication_interface').value
 		self._serial_port = self.get_parameter('serial_port').value
 		self._baudrate = self.get_parameter('baudrate').value
-		self._publish_rate = self.get_parameter('publish_rate').value		
+		self._frequency = self.get_parameter('frequency').value		
 		if self._comm_interface not in ['rs485','rs232']:
 			self.get_logger().error('Unsupported communication interface : ' + self._comm_interface)
 			rclpy.shutdown()

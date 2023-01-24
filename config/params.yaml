@@ -3,4 +3,4 @@
     communication_interface : "rs485" # rs485 or rs232 broadcast mode only
     serial_port : "/dev/ttyS0"
     baudrate : 9600 # 9600, 19200, 38400 or 115200 bps
-    publish_rate : 10.0 # recommended 10 to 20 Hz
+    frequency : 10.0 # recommended 10 to 20 Hz
