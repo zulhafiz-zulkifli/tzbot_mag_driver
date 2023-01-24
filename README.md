@@ -1,4 +1,4 @@
-# tzbot_mag_driver  [![Badge License]][License]
+# tzbot_mag_driver  [![License: MIT](https://img.shields.io/github/license/zulhafiz-zulkifli/tzbot_mag_driver?style=flat-square)](https://github.com/zulhafiz-zulkifli/tzbot_mag_driver/blob/ros2/LICENSE)
 
 
 **Author**: Zulhafiz Zulkifli
