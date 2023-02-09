@@ -59,7 +59,7 @@ class TzbotMagDriver(Node):
 			self._ser.parity = serial.PARITY_NONE # No parity checking
 			self._ser.stopbits = serial.STOPBITS_ONE # Number of stop bits
 			self._ser.bytesize = serial.EIGHTBITS # Number of bits per byte
-			self._ser.timeout = 0.2 # Read timeout value in seconds
+			self._ser.timeout = 1.0 # Read timeout value in seconds
 			self._ser.xonxoff = False # Disable software flow control
 			self._ser.rtscts = False # Disable hardware (RTS/CTS) flow control
 			self._ser.dsrdtr = False # Disable hardware (DSR/DTR) flow control
@@ -80,6 +80,7 @@ class TzbotMagDriver(Node):
 		else:
 			self._ser.reset_input_buffer()
 			if self._comm_interface == 'rs485':
+				# self._ser.flushInput()
 				data = self._ser.read_until(bytes(RS485_FOOTER))
 				# self.get_logger().info(data.hex(':'))
 				if len(data)==RS485_BYTES_SIZE and data[0:5]==RS485_HEADER and data[-1:]==RS485_FOOTER:
@@ -91,9 +92,12 @@ class TzbotMagDriver(Node):
 					self.middle_deviation_pub.publish(Float32(data=mid_dev))
 					self.left_deviation_pub.publish(Float32(data=lft_dev))
 					self.cell_state_pub.publish(String(data=cell_state))
+					# self.get_logger().info('Publishing sensor messages')
 				else:
-					self.get_logger().warn('Non valid data received, not publishing any message')
+					pass
+					# self.get_logger().warn('Non valid data received, not publishing any message')
 			elif self._comm_interface == 'rs232':
+				# self._ser.flushInput()
 				data = self._ser.read_until(bytes(RS232_FOOTER))
 				# self.get_logger().info(data.hex(':'))
 				if len(data)==RS232_BYTES_SIZE and data[0:5]==RS232_HEADER and data[-1:]==RS232_FOOTER:
@@ -105,8 +109,10 @@ class TzbotMagDriver(Node):
 					self.middle_deviation_pub.publish(Float32(data=mid_dev))
 					self.left_deviation_pub.publish(Float32(data=lft_dev))
 					self.cell_state_pub.publish(String(data=cell_state))
+					# self.get_logger().info('Publishing sensor messages')
 				else:
-					self.get_logger().warn('Non valid data received, not publishing any message')
+					pass
+					# self.get_logger().warn('Non valid data received, not publishing any message')
 			# rgt_dev_str = (str(rgt_dev)+' mm') if abs(rgt_dev)<200 else 'n/a'
 			# mid_dev_str = (str(mid_dev)+' mm') if abs(mid_dev)<200 else 'n/a'
 			# lft_dev_str = (str(lft_dev)+' mm') if abs(lft_dev)<200 else 'n/a'
