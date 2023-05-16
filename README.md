@@ -14,6 +14,11 @@ This repository offers a ROS package and an API written in python to communicate
 ```shell
 sudo apt install python3-serial
 ```
+- [minimalmodbus](https://github.com/pyhys/minimalmodbus)
+```shell
+sudo pip3 install minimalmodbus
+```
+
 
 ## Installation
 
@@ -56,14 +61,14 @@ Magnetic sensor cell's status which depends on the configured sensitivity. For e
 ### Parameters 
 All ROS parameters can be changed inside config/params.yaml before launching the driver.
 
-***`~communication_interface` (string, default: "rs485")***   
-Serial communication interface. Only support "rs485" and "rs232"
+***`~communication_interface` (string, default: "modbus")***   
+Serial communication interface. Only support "modbus", "rs485" and "rs232"
 
 ***`~serial_port` (string, default: "/dev/ttyS0" )***   
 Serial port name where the sensor is connected.
 
-***`~baudrate` (int, default: 9600)***   
+***`~baudrate` (int, default: 115200)***   
  Rate at which the information is shared to the communication channel. Only support 9600, 19200, 38400 and 115200 bps.
 
-***`~frequency` (float, default: 10.0)***    
+***`~frequency` (float, default: 50.0)***    
 Frequency at which serial data from the sensor is read and ROS topics are published in Hz.
