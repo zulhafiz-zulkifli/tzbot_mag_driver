@@ -1,6 +1,6 @@
 /**:
   ros__parameters:
-    communication_interface : "rs485" # rs485 or rs232 broadcast mode only
-    serial_port : "/dev/ttyUSB0"
+    communication_interface : "modbus" # modbus, rs485 or rs232 broadcast mode only
+    serial_port : "/dev/ttyS1"
     baudrate : 115200 # 9600, 19200, 38400 or 115200 bps
-    frequency : 20.0 # recommended 10 to 20 Hz
+    frequency : 50.0 # recommended 10 to 20 Hz
